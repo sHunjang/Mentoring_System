@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>추천 결과</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .user-info {
+            width: 45%;
+        }
+
+        .company-info {
+            width: 45%;
+        }
+
+        .company-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .company-info th, .company-info td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .company-info th {
+            background-color: #f2f2f2;
+        }
+
+        .company-info b {
+            color: #0047ab;
+        }
+    </style>
+</head>
+<body>
+    <h1>추천 결과</h1>
+    <div class="container">
+        <div class="user-info">
+            <h2>사용자 정보</h2>
+            <p><b>이름:</b> {{ result_text['user_info']['name'] }}</p>
+            <p><b>경력 여부:</b> {{ result_text['user_info']['experience'] }}</p>
+            <p><b>희망 기업:</b> {{ result_text['user_info']['desired_company'] }}</p>
+            <p><b>보유 기술:</b> {{ ", ".join(result_text['user_info']['skills']) }}</p>
+        </div>
+        <div class="company-info">
+            {% if result_text['user_info']['desired_company'] %}
+                <h2>{{ result_text['user_info']['desired_company'] }}의 기업 채용 공고</h2>
+                {% if result_text['desired_company_results'] %}
+                    <table>
+                        <tr>
+                            <th>기업</th>
+                            <th>보유 기술과 일치하는 비율</th>
+                            <th>추가 우대사항과 일치하는 비율</th>
+                            <th>부족한 기술에 대한 추천 프로젝트</th>
+                        </tr>
+                        {% for company, details in result_text['desired_company_results'].items() %}
+                            <tr>
+                                <td><b>{{ company }}</b></td>
+                                <td>{{ details.required_score }}%</td>
+                                <td>{{ details.preferential_score }}%</td>
+                                <td>
+                                    <ul>
+                                        {% for skill in details.preferential_skills %}
+                                            <li>{{ skill }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>해당 기업의 채용 공고가 존재하지 않습니다.</p>
+                {% endif %}
+            {% else %}
+                <h2>추천 기업 채용 공고</h2>
+                {% if result_text['recommended_companies'] %}
+                    <table>
+                        <tr>
+                            <th>기업</th>
+                            <th>보유 기술과 일치하는 비율</th>
+                            <th>추가 우대사항과 일치하는 비율</th>
+                            <th>부족한 기술에 대한 추천 프로젝트</th>
+                        </tr>
+                        {% for company, details in result_text['recommended_companies'].items() %}
+                            <tr>
+                                <td><b>{{ company }}</b></td>
+                                <td>{{ details.required_score }}%</td>
+                                <td>{{ details.preferential_score }}%</td>
+                                <td>
+                                    <ul>
+                                        {% for skill in details.preferential_skills %}
+                                            <li>{{ skill }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>추천된 기업이 존재하지 않습니다.</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
