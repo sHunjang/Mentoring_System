@@ -9,11 +9,13 @@ companies = {
         {
             "title": "Application Engineering",
             "required_skills": ["java", "springboot", "sql"],
+            "experience" : "신입",
             "preferential": ["프로그래밍 언어 및 DB 활용", "MSA", "AWS Resource", "Native App."]
         },
         {
             "title": "SoftWare Engineering",
             "required_skills": ["java", "springboot"],
+            "experience" : "신입",
             "preferential": ["금융 및 경제학 관련 지식", "Native App. 개발"]
         }
     ],
@@ -21,11 +23,13 @@ companies = {
         {
             "title": "Server Developer",
             "required_skills": ["java", "spring framework"],
+            "experience" : "신입",
             "preferential": ["redis", "kafka", "elk", "네트워크프로그래밍"]
         },
         {
             "title": "iOS Developer",
             "required_skills": ["object-C", "swift"],
+            "experience" : "신입",
             "preferential": ["SDK 개발"]
         }
     ],
@@ -33,7 +37,7 @@ companies = {
         {
             "title": "Senior, Backend engineer (SCM)",
             "required_skills": ["java", "python", "spring"],
-            "experience": "경력5년이상",
+            "experience": "5",
             "preferential": ["Spring boot", "컴퓨터 과학 석사학위"]
         }
     ],
@@ -41,6 +45,7 @@ companies = {
         {
             "title": "Web_Developer",
             "required_skills": ["java", "jsp"],
+            "experience" : "신입",
             "preferential": ["정보처리기사", "챗봇구축경험자"]
         }
     ],
@@ -48,6 +53,7 @@ companies = {
         {
             "title" : "SW Developer",
             "required_skills" : ["java", "rdb", "nosql"],
+            "experience" : "신입",
             "preferential" : ["Elastic Search", "python", "hadoop"],
         }
     ],
@@ -223,42 +229,57 @@ companies = {
     ]
 }
 
+skill_stack = {
+    "언어" : ["java", "python", "c++", "c", "kotlin", "swift", "object-c", "javascript", "typescript", "R", "scala", "html", "css"],
+    "프론트엔드" : ["react", "angular", "vuejs", "nextjs", "svelte"],
+    "백엔드" : ["spring", "springboot", "nodejs", "flask", "django", "ruby on rails"],
+    "데이터" : ["kafka", "hadoop", "spark", "pytorch", "flink", "tensorflow", "hive", "base"],
+    "데이터베이스" : ["mongodb", "mysql", "cassandradb", "redis", "elasticsearch", "mariadb", "oracledb"]
+}
+
 recommend_projects = {
-    "웹 개발": {
-        "프론트엔드": ["react", "angular", "vue.js"],
-        "백엔드": ["node.js", "express.js", "django", "ruby on rails"],
-        "추천 프로젝트": ["간단한 블로그 플랫폼", "할 일 관리 앱", "쇼핑 목록 관리 앱", "날씨 앱"]
-    },
-    "모바일 앱 개발": {
-        "Android": ["java", "kotlin"],
-        "iOS": ["swift", "objective-c"],
-        "추천 프로젝트": ["간단한 메모 앱", "사진 공유 앱", "간단한 퍼즐 게임"]
-    },
-    "데이터 분석과 머신러닝": {
-        "언어/도구": ["python", "jupyter notebook"],
-        "추천 프로젝트": ["데이터 시각화", "간단한 분류기 구현", "선형 회귀 분석", "텍스트 분석"]
-    },
-    "인공지능과 딥러닝": {
-        "언어/도구": ["python", "tensorflow", "pytorch"],
-        "추천 프로젝트": ["이미지 분류기", "간단한 챗봇", "강화 학습을 이용한 게임 에이전트"]
-    },
-    "게임 개발": {
-        "게임 엔진": ["unity"],
-        "언어/도구": ["c#"],
-        "추천 프로젝트": ["간단한 2D 플랫폼 게임", "간단한 퍼즐 게임", "아케이드 게임"]
-    },
-    "데이터베이스 관리 시스템": {
-        "언어/도구": ["sql", "mysql", "postgresql"],
-        "추천 프로젝트": ["간단한 블로그", "온라인 상점의 상품 관리 시스템", "학생 성적 관리 시스템"]
-    },
-    "블록체인": {
-        "언어/도구": ["ethereum", "solidity"],
-        "추천 프로젝트": ["간단한 스마트 계약 구현", "간단한 탈중앙화 애플리케이션(DApp)"]
-    },
-    "인터넷 of Things (IoT)": {
-        "언어/도구": ["arduino", "raspberry pi", "c", "c++"],
-        "추천 프로젝트": ["간단한 홈 오토메이션 시스템", "온도 및 습도 모니터링 시스템"]
-    }
+    "언어 학습 앱" : [
+        {
+            "기술" : ["java", "python", "kotlin", "swift", "react", "flask", "mongodb"],
+            "내용" : "다국어 학습 앱을 개발하여 사용자가 자신의 언어 능력 향상 도움 앱"
+        }
+    ],
+    "AI기반 음악 추천 시스템" : [
+        {
+            "기술" : ["python", "tensorflow", "pytorch", "mongodb", "redis", "elasticsearch"],
+            "내용" : "사용자의 음악 취향을 분석하고, 인공지능 모델을 활용하여 개인 맞춤형 음악 추천 시스템"
+        },
+    ],
+    "개인 포트폴리오 웹사이트" : [
+        {
+            "기술" : ["react", "typescript", "nodejs", "express", "mongodb"],
+            "내용" : "개발자 또는 디자이너로서 자신의 작업물을 개시하고, 이력서 및 연락처 정보를 제공하는 개인 웹사이트 구축"
+        },
+    ],
+    "건강 관리 앱" : [
+        {
+            "기술" : ["flutter", "swift", "kotlin", "nodejs", "AWS", "figma", "firebase", "tensorflow"],
+            "내용" : "사용자의 식습관과 활동량 데이터를 인공지능을 활용하여 개인의 건강 상태를 추적/관리하고 건강 조언 제공 앱"
+        }
+    ],
+    "음식 및 레시피 추천 챗봇" : [
+        {
+            "기술" : ["react", "flask", "django", "mongodb", "mysql", "tensorflow", "pytorch"],
+            "내용" : "사용자의 식습관과 취향에 맞춰 음식 및 요리 레시피를 추천하여 식사 계획을 도와주는 플랫폼"
+        }
+    ],
+    "로그 분석 및 알림 시스템" : [
+        {
+            "기술" : ["kafka", "mongodb", "cassandradb", "elasticsearch", "nltk", "react", "flask","angular", "azure", "tensorflow"],
+            "내용" : "소셜 미디어 플랫폼의 데이터를 수집하고 분석하여 특정 주제에 대한 실시간 트랜드 및 감성 분석을 수행하는 시스템을 통해 뉴스 및 소셜 미디어의 핫 토픽을 실시간으로 추적"
+        }
+    ],
+    "e러닝 플랫폼 강의 추천 시스템" : [
+        {
+            "기술" : ["kafka", "hadoop", "python", "tensorflow", "spark", "flask", "nltk", "jwt"],
+            "내용" : "학습자의 학습 기록, 관심 분야, 성취도 등을 분석하여 e러닝 플랫폼에서 강의를 추천하는 시스템"
+        }
+    ]
 }
 
 def count_matching_elements(list1, list2):
@@ -301,7 +322,8 @@ def process_user_input(user_form_data):
         "user_info": user_info,
         "recommended_companies": recommended_companies(user_info),
         "desired_company_results": desired_company_results(user_info),
-        "recommended_projects": recommended_projects(user_info)
+        "recommended_projects": recommended_projects(user_info),
+        "recommended_skill_projects" : recommended_skill_projects(user_info)
     }
     return result
 
@@ -327,6 +349,7 @@ def recommended_companies(user_info):
             if required_score >= 50:
                 recommended_companies.append({
                     "company": company,
+                    "title" : posting["title"],
                     "required_score": required_score,
                     "preferential_score": preferential_score,
                     "preferential_skills": preferential_skills
@@ -355,23 +378,34 @@ def recommended_projects(user_info):
     user_skills = user_info['skills']
     recommended_projects_list = []
 
-    for project_category, project_info in recommend_projects.items():
-        category_skills = []
+    for project_category, project_list in recommend_projects.items():
+        for project_info in project_list:
+            project_skills = project_info['기술']
 
-        for subcategory_skills in project_info.values():
-            if isinstance(subcategory_skills, list):
-                category_skills.extend(subcategory_skills)
+            for subcategory_skills in project_info.values():
+                if isinstance(subcategory_skills, list):
+                    project_skills.extend(subcategory_skills)
 
-        matching_skills = set(user_skills) & set(category_skills)
-        if len(matching_skills) > 0:
-            recommended_projects_list.append({
-                "category": project_category,
-                "matching_skills": list(matching_skills),
-                "projects": project_info["추천 프로젝트"]
-            })
+            unmatched_skills = set(project_skills) - set(user_skills) 
+            if len(unmatched_skills) > 0:
+                recommended_projects_list.append({
+                    "category": project_category,
+                    "unmatched_skills": list(unmatched_skills),
+                    "projects": project_info['내용']
+                })
 
     return recommended_projects_list
 
+
+def recommended_skill_projects(user_info):
+    user_skills = user_info["skills"]
+    recommended_projects = {}
+    
+    for skill, projects in recommend_projects.items():
+        if any(s not in user_skills for s in skill_stack.get(skill, [])):
+            recommended_projects[skill] = projects
+    
+    return recommended_projects
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -385,6 +419,16 @@ def index():
             return render_template("index.html", error_message=error_message)
     else:
         return render_template("index.html")
+
+@app.route("/result_detail/<company_name>/<job_title>", methods=["GET"])
+def result_detail(company_name, job_title):
+    result_info = {
+        "company_name": company_name,
+        "job_title": job_title,
+        "required_skills": companies["required_skills"],
+        "preferential_skills": companies["preferential"]
+    }
+    return render_template("result_detail.html", **result_info)
 
 
 if __name__ == '__main__':
