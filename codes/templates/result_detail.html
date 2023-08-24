@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company_name }} - {{ job_title }} 상세 정보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h1, h2 {
+            text-align: center;
+            padding: 20px 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>{{ company_name }} - {{ job_title }} 상세 정보</h1>
+    
+    <h2>필수 기술</h2>
+    <ul>
+        {% for skill in required_skills %}
+            <li>
+                <strong>{{ skill }}</strong><br>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>우대 기술</h2>
+    <ul>
+        {% for skill in preferential_skills %}
+            <li>
+                <strong>{{ skill }}</strong><br>
+                </li>
+        {% endfor %}
+    </ul>
+
+    
+    <h3>추천 프로젝트</h3>
+    
+    <a href="/">돌아가기</a>
+</body>
+</html>
