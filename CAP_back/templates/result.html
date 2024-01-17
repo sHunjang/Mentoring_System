@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기술 직업 추천 시스템 - 결과</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .user-info {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .recommendations {
+            flex: 1;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h1, h2 {
+            text-align: center;
+            padding: 20px 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        strong {
+            font-weight: bold;
+        }
+        p {
+            text-align: center;
+            font-style: italic;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            padding-left: 0;
+        }
+        li {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-info">
+            <h1>사용자 입력 정보</h1>
+            <ul>
+                <li><strong>이름 :</strong> {{ result["user_info"]["name"] }}</li>
+                <li><strong>경력 :</strong> {{ result["user_info"]["experience"] }}</li>
+                <li><strong>기술 스택 :</strong>
+                    <ul>
+                        {% for skill in result["user_info"]["skills"] %}
+                        <li><a href="javascript:void(0);" onclick="showRecommendedProjects('{{ skill }}')">{{ skill }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><strong>희망 기업 :</strong> {{ result["user_info"]["desired_company"] }}</li>
+                <li><strong>자격증 :</strong> {{ result["user_info"]["certification"]|join(", ") }}</li>
+                <li><strong>어학 능력 :</strong>
+                    <ul>
+                        {% for language, score in result["user_info"]["languages"].items() %}
+                        <li>{{ language }} - {{ score }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><strong>활동 프로젝트 :</strong>
+                    <ul>
+                        {% for project, skill in result["user_info"]["projects"].items() %}
+                        <li>{{ project }} - {{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><strong>대외 활동 :</strong>
+                    <ul>
+                        {% for activity, subject in result["user_info"]["activities"].items() %}
+                        <li>{{ activity }} - {{ subject }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            
+        </div>
+    
+    <div class="recommendations">
+        <h2>추천된 직업 및 프로젝트</h2>
+        <h2>추천된 회사 목록:</h2>
+        <ul>
+            {% for company in result["recommended_companies"] %}
+            <li>
+                <a href="{{ url_for('result_detail', company_name=company['company'], job_title=company['title']) }}">
+                    <strong>회사:</strong> {{ company["company"] }}<br>
+                    <strong>공고 제목:</strong> {{ company["title"] }}<br>
+                    <strong>필수 기술 점수:</strong> {{ company["required_score"] }}<br>
+                    <strong>우대 기술 점수:</strong> {{ company["preferential_score"] }}<br>
+                    <strong>우대 기술:</strong> {{ company["preferential_skills"]|join(", ") }}<br>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>원하는 회사 결과:</h2>
+        {% if result["desired_company_results"] %}
+        <ul>
+            {% for title, posting in result["desired_company_results"].items() %}
+            <li>
+                <a href="{{ url_for('result_detail', company_name=posting['company'], job_title=title) }}">
+                    <strong>회사:</strong> {{ posting['company'] }}<br>
+                    <strong>공고 제목:</strong> {{ title }}<br>
+                    <strong>필수 기술 점수:</strong> {{ posting["required_score"] }}<br>
+                    <strong>우대 기술 점수:</strong> {{ posting["preferential_score"] }}<br>
+                    <strong>우대 기술:</strong> {{ posting["preferential_skills"]|join(", ") }}<br>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>원하는 회사에 대한 결과가 없습니다.</p>
+        {% endif %}
+
+        <ul>
+            {% for company in recommended_companies %}
+            <li>
+                <a href="{{ url_for('result_detail', company_name=posting['company'], job_title=company['title']) }}">
+                    {{ company['title'] }} ({{ company['company'] }})
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h2>추천된 프로젝트:</h2>
+        <ul id="recommended-projects">
+            {% for project in result["recommended_projects"] %}
+            <li>
+                <strong>프로젝트 명:</strong> {{ project["category"] }}<br>
+                <strong>기술 스택:</strong> {{ project["unmatched_skills"]|join(", ") }}<br>
+                <strong>내용 :</strong> {{ project["projects"] }}<br>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        // 기술 스택 클릭 시 호출되는 함수
+        function showRecommendedProjects(skill) {
+            // 추천 프로젝트를 표시할 엘리먼트 선택
+            var projectsContainer = document.getElementById("recommended-projects");
+            
+            // 기술 스택에 해당하는 추천 프로젝트 목록 가져오기 (서버에서 가져올 수도 있음)
+            var recommendedProjects = getRecommendedProjectsForSkill(skill);
+            
+            // 추천 프로젝트 목록을 업데이트
+            projectsContainer.innerHTML = "";
+            for (var i = 0; i < recommendedProjects.length; i++) {
+                var project = recommendedProjects[i];
+                var projectItem = document.createElement("li");
+                projectItem.textContent = project.name + " - " + project.description;
+                projectsContainer.appendChild(projectItem);
+            }
+        }
+        
+        // 실제로는 서버에서 추천 프로젝트 목록을 가져오는 함수
+        function getRecommendedProjectsForSkill(skill) {
+            // 여기서는 예시 데이터를 반환하도록 설정
+            var exampleProjects = [
+                { name: "프로젝트1", description: "기술 스택 활용한 프로젝트 설명" },
+                { name: "프로젝트2", description: "기술 스택 활용한 프로젝트 설명" },
+                // 추가적인 프로젝트 정보
+            ];
+            return exampleProjects;
+        }
+    </script>
+</body>
+</html>

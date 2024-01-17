@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommended Projects</title>
+</head>
+<body>
+    <h1>Recommended Projects for {{ skill_stack }}</h1>
+    <ul>
+        {% for project in recommended_projects_list %}
+            <li>
+                <strong>Category:</strong> {{ project["기술"]|join(", ") }}<br>
+                <strong>Content:</strong> {{ project["내용"] }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>
